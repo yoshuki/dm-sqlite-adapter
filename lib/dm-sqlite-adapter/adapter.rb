@@ -20,7 +20,9 @@ module DataMapper
         # TODO Once do_sqlite3 accepts both a Pathname or a String,
         # normalizing database and path won't be necessary anymore
         db   = (options[:database] || options.delete('database')).to_s
+        db   = nil if db.empty?
         path = (options[:path    ] || options.delete('path')).to_s
+        path = nil if path.empty?
 
         options.update(:adapter => 'sqlite3', :database => db, :path => path)
       end

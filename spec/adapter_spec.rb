@@ -39,4 +39,14 @@ describe 'DataMapper::Adapters::SqliteAdapter' do
     it { subject.options[:path].should == 'name' }
   end
 
+  describe "without :database" do
+    subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite', :path => :name }) }
+    it { subject.options[:database].should be_nil }
+  end
+
+  describe "without :path" do
+    subject { DataMapper::Adapters::SqliteAdapter.new(:default, { :adapter => 'sqlite', :database => :name }) }
+    it { subject.options[:path].should be_nil }
+  end
+
 end
